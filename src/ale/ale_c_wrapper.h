@@ -85,8 +85,8 @@ extern "C" {
     ale->theOSystem->colourPalette().applyPaletteGrayscale(output_buffer, ale_screen_data, screen_size);
   }
 
-  void saveState(ale::ALEInterface *ale){ale->saveState();}
-  void loadState(ale::ALEInterface *ale){ale->loadState();}
+  // void saveState(ale::ALEInterface *ale){ale->saveState();}
+  // void loadState(ale::ALEInterface *ale){ale->loadState();}
   ale::ALEState* cloneState(ale::ALEInterface *ale){return new ale::ALEState(ale->cloneState());}
   void restoreState(ale::ALEInterface *ale, ale::ALEState* state){ale->restoreState(*state);}
   ale::ALEState* cloneSystemState(ale::ALEInterface *ale){return new ale::ALEState(ale->cloneSystemState());}

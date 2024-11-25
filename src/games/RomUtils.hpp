@@ -17,6 +17,7 @@
 
 #ifndef __ROMUTILS_HPP__
 #define __ROMUTILS_HPP__
+#include <cstdint>
 
 class System;
 

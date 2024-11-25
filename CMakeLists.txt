@@ -4,7 +4,7 @@ set(ALEVERSION "0.6.0")
 
 
 option(USE_SDL "Use SDL" OFF)
-option(BUILD_CPP_LIB "Build C++ Shared Library" ON)
+option(BUILD_CPP_LIB "Build C++ Shared Library" OFF)
 option(BUILD_C_LIB "Build ALE C Library (needed for Python interface)" ON)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fPIC -O3 -fomit-frame-pointer -D__STDC_CONSTANT_MACROS")
@@ -78,6 +78,11 @@ if(UNIX)
          INSTALL(FILES ${header} DESTINATION ${INCLUDE_INSTALL_DIR}/${PROJECT_NAME})
   endforeach(header ${HEADERS})
 
+  file(GLOB module_headers ${SOURCE_DIR}/../ale_py/*.h)
+  foreach(header ${module_headers})
+         INSTALL(FILES ${header} DESTINATION ${INCLUDE_INSTALL_DIR}/${PROJECT_NAME})
+  endforeach(header ${HEADERS})
+
   foreach(module ${MODULES})
     file(GLOB module_headers ${SOURCE_DIR}/${module}/*.h)
     foreach(header ${module_headers})
@@ -139,7 +144,7 @@ if(BUILD_CPP_LIB)
 endif()
 
 if(BUILD_C_LIB)
-  add_library(ale-c-lib SHARED ${CMAKE_CURRENT_SOURCE_DIR}/ale_py/ale_c_wrapper.cpp ${SOURCE_DIR}/ale_interface.cpp ${SOURCES})
+  add_library(ale-c-lib STATIC ${CMAKE_CURRENT_SOURCE_DIR}/ale_py/ale_c_wrapper.cpp ${SOURCE_DIR}/ale_interface.cpp ${SOURCES})
   set_target_properties(ale-c-lib PROPERTIES OUTPUT_NAME ale_c)
   set_target_properties(ale-c-lib PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/ale_py)
   if(PYTHON_MODULE_EXTENSION)

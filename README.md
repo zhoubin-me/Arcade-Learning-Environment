@@ -1,7 +1,3 @@
-![Build Status](https://github.com/mgbellemare/Arcade-Learning-Environment/workflows/Build%20ALE/badge.svg)
-
-<img align="right" src="doc/manual/figures/ale.gif" width=50>
-
 # The Arcade Learning Environment
 
 ## Overview
